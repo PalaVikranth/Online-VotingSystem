@@ -13,7 +13,13 @@ export default function Login() {
     event.preventDefault();
     const user = signIn(email, password);
     if (!user) { setError("Email or password is incorrect. Please try again."); return; }
-    navigate(user.role === "admin" ? "/admin" : "/dashboard");
+  const dashboardRoutes = {
+  admin: "/admin",
+  artist: "/artist",
+  user: "/dashboard"
+};
+
+navigate(dashboardRoutes[user.role] || "/");
   }
 
   return (
